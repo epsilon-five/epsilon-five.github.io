@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="utf-8">
+		<title>Slingshot</title>
+		<style>
+			body {
+				margin-left: 10%;
+				margin-right: 10%;
+				margin-bottom: 40px;
+				background-color: #0a0a1a;
+				color: #d0d0d0;
+				font-family: Arial, sans-serif;	
+			}
+
+			.frame {
+				background-color: #0d0d3a;
+				padding-left: 5%;
+				padding-right: 5%;
+				padding-bottom: 5%;
+				padding-top: 2%;
+			}
+
+			/* Style the header */
+			.header {
+				padding: 20px;
+				text-align: center;
+			}
+
+			/* Style the top navigation bar */
+			.topnav {
+				z-index: 1;
+				overflow: hidden;
+				background-color: #333;
+				position: fixed;
+				top: 0;
+				width: 80%;
+			}
+
+			/* Style the topnav links */
+			.topnav a {
+				float: left;
+				display: block;
+				color: #f2f2f2;
+				text-align: center;
+				padding: 14px 16px;
+				text-decoration: none;
+			}
+
+			/* Change color on hover */
+			.topnav a:hover {
+				background-color: #ddd;
+				color: black;
+			}
+
+			/* Create three equal columns that floats next to each other */
+			.column {
+				float: left;
+				width: 33.33%;
+				/*padding: 15px;*/
+				padding: 0%;
+				/*background-color: white;#4f4f9f;*/
+			}
+
+			/* Clear floats after the columns */
+			.row:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+
+			.wrapper {
+				overflow: hidden;
+				padding-top: 56.25%;
+				position: relative;
+			}
+
+			.wrapper2 {
+				overflow: hidden;	
+				position: relative;
+			}
+
+			.wrapper iframe {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+			.wrapper2 iframe {
+				width: 50%;
+				padding-left: 25%;
+			}
+
+			.wrapper2 img {
+				width: 50%;
+				padding-left: 25%;
+			}
+
+			#header {
+				margin-top: 20px;
+				position: relative;
+				z-index: -1;
+			}
+
+			#headerFade {
+				width: 100%;
+				height: 20%;
+				background: linear-gradient(0deg, rgba(10,10,170,0.6) 0%, rgba(10,10,170,0) 100%);
+				position: absolute;
+				left: 0;
+				bottom: 0;
+			}
+
+			#headerImg {
+				width: 100%;
+				height: auto;				
+			}
+
+			.img {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				width: 90%;
+				height: auto;
+				cursor: pointer;
+			}
+
+			#largeImg {
+				float: left;
+				display: block;
+				width: 100%;				
+				height: auto;
+			}
+
+			#left {
+				height: 100%;
+				width: 15%;
+				position: absolute;
+				top: 0;
+			}
+
+			#right {
+				height: 100%;
+				width: 15%;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+
+			#left:hover {
+				background: linear-gradient(90deg, rgba(20,20,100,0.6) 0%, rgba(20,20,100,0) 100%);
+			}
+
+			#right:hover {
+				background: linear-gradient(270deg, rgba(20,20,100,0.6) 0%, rgba(20,20,100,0) 100%);
+			}
+
+			.overlay {  				
+				width: 80%;
+				display: none;
+				position: fixed;
+				z-index: 1;
+				top: 8%;
+				left: 10%;
+				background-color: rgb(0,0,0); /* Black fallback color */
+				background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+				overflow-x: hidden; /* Disable horizontal scroll */
+				transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+			}
+
+			.overlay:before {
+				content: "";
+				float: left;
+				padding-top: 56.25%;
+			}
+
+			#closeButton{
+				font-size: 60px;
+				text-decoration: none; 
+				font-family: 'Lato', sans-serif;
+				color: #333;
+				position: absolute;
+				top: 0;
+				right: 10px;
+				z-index: 1;
+				display: none;
+			}
+
+			.overlay:hover #closeButton {
+				display: block;
+			}
+
+			#customButton {
+				width: 30%;
+				height: auto;
+				margin-left: auto;
+				margin-right: auto;
+				background-color: #338;
+				cursor: pointer;
+			}
+
+			#customButton:hover {
+				background-color: #ddd;
+				color: #225;
+			}
+
+			#customButton h2 {
+				text-align: center;
+				padding: 20px;
+			}
+
+			@media screen and (max-width: 1000px){
+				.column {
+					width: 50%;
+				}
+			}
+
+			@media screen and (max-width: 500px){
+				.column {
+					width: 100%;
+				}
+
+				#customButton {
+					width: 40%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="topnav">
+			<a href="#top">Top</a>
+			<a href="#about_the_game">About the Game</a>
+			<a href="#screenshots">Screenshots</a>
+			<a href="#game">Game</a>
+			<a href="#about_us">About Us</a>
+		</div>
+
+		<a id="top"></a><br>
+
+		<div id="header">
+			<img src="img/header.JPG" id="headerImg">
+			<span id="headerFade"></span>
+		</div>
+
+		<div class="frame">			
+
+			<div class="header">
+				<h1>Slingshot Rocket</h1>
+			</div>
+
+			<div class="wrapper">
+				<iframe src="https://www.youtube.com/embed/LONJ-aQkPOg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>		
+
+			<a id="about_the_game"></a><br>
+
+			<div class="header">
+				<h2>ABOUT THE GAME</h2>
+			</div>
+
+
+			<h3>STORY</h3>
+			<p>In a far away galaxy once lived some people not to different from us on a totally cool planet. <br>
+			But after some nuclear wars and a little bit of pollution the planet was not so cool anymore. <br> 
+			And so a brave crew set out in their spaceship to travel through the universe in order to find an even cooler planet.</p><br>
+
+			<h3>GAMEPLAY</h3>
+			<p>Navigate the spaceship through a variety of levels by only using the gravity of planets and activating the spaceships thrust in the right moment. <br> 
+			Try to reach the portal as fast as possible whitout damaging your vessel.</p><br>
+
+			<h3>FEATURES</h3>
+			<p>This game features:</p>
+			<p>
+				<ul>
+					<li>8 levels with ascending diffuculty</li>
+					<li>A number of different planets which each have a unique effect on the spaceship</li>
+					<li>Original Music</li>
+					<li>4 different spaceship-designs</li>
+				</ul>
+			</p>
+			
+
+			<a id="screenshots"></a><br>
+
+			<div class="header">
+				<h2>SCREENSHOTS</h2>
+			</div>
+
+			<div class="row">
+				<div class="column">
+					<img src="img/ss1.JPG" alt="screenshot" class="img" id="0" onclick="showOverlay(this.id, this.src)">
+				</div>
+
+				<div class="column">
+					<img src="img/ss2.JPG" alt="screenshot" class="img" id="1" onclick="showOverlay(this.id, this.src)">
+				</div>
+
+				<div class="column">
+					<img src="img/ss3.JPG" alt="screenshot" class="img" id="2" onclick="showOverlay(this.id, this.src)">
+				</div>
+
+				<div class="column">
+					<img src="img/ss4.JPG" alt="screenshot" class="img" id="3" onclick="showOverlay(this.id, this.src)">
+				</div>
+
+				<div class="column">
+					<img src="img/ss6.JPG" alt="screenshot" class="img" id="4" onclick="showOverlay(this.id, this.src)">
+				</div>
+
+				<div class="column">
+					<img src="img/ss5.JPG" alt="screenshot" class="img" id="5" onclick="showOverlay(this.id, this.src)">
+				</div>
+			</div>
+
+			<a id="game"></a><br>
+
+			<div class="header">
+				<h2>GAME</h2>
+			</div>
+
+			<div id="customButton" onclick="openGameScreen()">
+				<h2>Play the Game!</h2>
+			</div>
+
+			<div class="overlay" id="gameScreen">
+				
+			</div>
+
+			<div class="header">
+				<h3>You can also play or download the game for Windows on itch.io</h3>
+			</div>
+
+		
+
+			<div class="wrapper2">
+				<iframe frameborder="0" src="https://itch.io/embed/971112?linkback=true&amp;bg_color=000d1a&amp;fg_color=ffffff&amp;link_color=0484d1&amp;border_color=303d4a" width="352" height="167"><a href="https://epsilon-five.itch.io/slingshot">Slingshot by Epsilon Five</a></iframe>
+			</div>
+
+			<div class="header">
+				<h3>Or get it in the Google App Store for Android</h3>
+			</div>
+
+		
+
+			<div class="wrapper2">
+				<a href='https://play.google.com/store/apps/details?id=org.godotengine.slingshotcompressed&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+			</div>
+
+			<a id="about_us"></a><br>
+
+			<div class="header">
+				<h2>ABOUT US</h2>
+			</div>
+
+			<p>We are a team of five students who had fun creating their first game 'Slingshot Rocket'. This game was made by Magnus Kaut, Linda Ulmer, Frauke Andersen, Max Molitor and Nikolas Schäfer with a special thanks to Nicolas Behrens for creating some cool Musik used in the game.</p>
+
+			<div class="overlay" id="ov">
+				<div>
+					<a href="javascript:void(0)" id="closeButton" onclick="hideOverlay('ov')">&times;</a>
+					<span id="left" onclick="previous()"></span>
+					<span id="right" onclick="next()"></span>
+					<img src="" alt="largeSreenshot" id="largeImg" onclick="hideOverlay()">
+				</div>
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			
+			var id = 0;
+
+			function showOverlay(imgId, imgSrc) {
+				id = imgId;
+				document.getElementById('ov').style.display = 'block';
+				document.getElementById('largeImg').src = imgSrc;
+			}
+
+			function hideOverlay(id){
+				document.getElementById(id).style.display = 'none';
+			}
+
+			function previous(){
+				var imgId = getPreviousId();
+				var imgSrc = document.getElementById(imgId).src;
+				showOverlay(imgId, imgSrc);
+			}
+
+			function next(){
+				var imgId = getNextId();
+				var imgSrc = document.getElementById(imgId).src;
+				showOverlay(imgId, imgSrc);
+			}
+
+			function getPreviousId(){
+				return String((Number(id) - 1 + 6) % 6)
+			}
+
+			function getNextId(){
+				return String((Number(id) + 1) % 6)
+			}
+
+			function openGameScreen() {
+				document.getElementById('gameScreen').style.display = 'block';
+				document.getElementById('gameScreen').innerHTML = '<div class="wrapper"><a href="javascript:void(0)" id="closeButton" onclick="closeGameScreen()">&times;</a><iframe frameborder="0" src="https://itch.io/embed-upload/3571377?color=000d1a" allowfullscreen=""><a href="https://epsilon-five.itch.io/slingshot">Play Slingshot on itch.io</a></iframe></div>';
+			}
+
+			function closeGameScreen() {
+				document.getElementById('gameScreen').style.display = 'none';
+				document.getElementById('gameScreen').innerHTML = "";
+			}
+
+		</script>
+
+		
+		
+	</body>
+</html>
